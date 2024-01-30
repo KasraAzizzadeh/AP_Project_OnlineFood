@@ -9,7 +9,7 @@ public class Food {
     private int price;
     private float rating;
     private int totalRatings;
-    //private final ArrayList<Comments> thisFoodComments = new ArrayList<>();
+    private final ArrayList<Comment> thisFoodComments = new ArrayList<>();
     final static ArrayList<Food> allFoods = new ArrayList<>();
 
     public Food(String name, int price, Restaurant restaurant){
