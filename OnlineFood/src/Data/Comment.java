@@ -1,8 +1,8 @@
 package Data;
 
 public class Comment {
-    private String comment;
-    private String customerUsername;
+    private final String comment;
+    private final String customerUsername;
 
     Comment(String comment, String customerUsername){
         this.comment = comment;

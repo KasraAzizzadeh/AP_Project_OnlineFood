@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Customer extends User {
 
     private final static ArrayList<Customer> allCustomers  = new ArrayList<>();
-    private Cart cart;
+    private final Cart cart;
 
     private Customer(String username, String password){
         this.username = username;

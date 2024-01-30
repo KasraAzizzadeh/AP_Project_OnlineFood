@@ -176,6 +176,25 @@ public class CustomerMenu {
                 flag = false;
             }
             //change password
+            else if (command.matches("^\\s*change\\s+password\\s*$")){
+                flag = false;
+                System.out.print("enter old password: ");
+                String oldPassword = Input.getScanner().nextLine();
+                if (oldPassword.matches("^\\s*\\S+\\s*$")){
+                    oldPassword = oldPassword.trim();
+                    System.out.print("enter new password: ");
+                    String newPassword = Input.getScanner().nextLine();
+                    if (newPassword.matches("^\\s*\\S+\\s*$")){
+                        newPassword = newPassword.trim();
+                        result = changeCustomerPassword(oldPassword, newPassword, userInterface.currentCustomer);
+                    }
+                    else
+                        result = "change failed: invalid password format";
+                }
+                else
+                    result = "change failed: invalid username format";
+                System.out.println(result);
+            }
             //if command not recognized: invalid command
             else if (flag)
                 System.out.println("invalid command!");
@@ -257,6 +276,20 @@ public class CustomerMenu {
 
         else
             Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).viewRatings();
+    }
+
+    static String changeCustomerPassword(String oldPassword, String newPassword, Customer customer){
+        if (!customer.checkPassword(oldPassword))
+            return "change failed: old password is wrong";
+
+        if(newPassword.matches(".*[^a-zA-Z0-9_]+.*"))
+            return "change failed: invalid new password format";
+
+        if(newPassword.length() < 5 || !newPassword.matches(".*[a-z].*") || !newPassword.matches(".*[A-Z].*") || !newPassword.matches(".*[0-9].*"))
+            return "change failed: weak new password";
+
+        customer.changePassword(newPassword);
+        return ("change successful, your new password is: " + newPassword);
     }
 
 }
