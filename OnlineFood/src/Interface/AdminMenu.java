@@ -19,6 +19,8 @@ public class AdminMenu {
         String result;
         boolean flag;
 
+        System.out.println("Welcome to Admin menu");
+
         while (true){
             flag = true;
             command = Input.getScanner().nextLine();

@@ -24,7 +24,6 @@ public class UserInterface {
     }
 
     public void run(){
-        System.out.println("Welcome to Online Food");
         while(true){
             switch (loginMenu.run()){
                 case "Admin Menu":

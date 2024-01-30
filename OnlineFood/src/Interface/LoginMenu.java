@@ -20,6 +20,8 @@ public class LoginMenu {
         String result;
         boolean flag;
 
+        System.out.println("Welcome to Online Food");
+
         while (true){
             flag = true;
             command = Input.getScanner().nextLine();

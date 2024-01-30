@@ -16,6 +16,8 @@ public class RestaurantMenu {
         String result;
         boolean flag;
 
+        System.out.println("Welcome to Restaurant menu");
+
         while (true){
             flag = true;
             command = Input.getScanner().nextLine();

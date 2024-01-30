@@ -16,6 +16,8 @@ public class CustomerMenu {
         String result;
         boolean flag;
 
+        System.out.println("Welcome to Customer menu");
+
         while (true){
             flag = true;
             command = Input.getScanner().nextLine();
