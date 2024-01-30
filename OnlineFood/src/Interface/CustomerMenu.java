@@ -139,7 +139,25 @@ public class CustomerMenu {
                     addComment(name, username, comment, userInterface.currentCustomer.getUsername());
                 }
                 else
-                    System.out.println("remove failed: invalid username format");
+                    System.out.println("adding comment failed: invalid username format");
+                flag = false;
+            }
+            //rate food
+            else if (command.matches("^\\s*rate\\s+food\\s*$")){
+                System.out.print("enter food name: ");
+                String name = Input.getScanner().nextLine();
+                name = name.trim();
+                System.out.print("enter restaurant username: ");
+                String username = Input.getScanner().nextLine();
+                if (username.matches("^\\s*\\S+\\s*$")){
+                    username = username.trim();
+                    System.out.print("what is your rating (between 0-5): ");
+                    int rating = Input.getScanner().nextInt();
+                    Input.getScanner().nextLine();
+                    rateFood(name, username, rating);
+                }
+                else
+                    System.out.println("rating failed: invalid username format");
                 flag = false;
             }
             //change password
@@ -196,6 +214,22 @@ public class CustomerMenu {
         else {
             Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).addComment(comment, customerUsername);
             System.out.println("your comment was successfully added");
+        }
+    }
+
+    static void rateFood(String foodName, String username, int rating){
+        if (Restaurant.getRestaurantByUsername(username) == null)
+            System.out.println("this restaurant does not exist");
+
+        else if (Restaurant.getRestaurantByUsername(username).getFoodByName(foodName) == null)
+            System.out.println("this restaurant does not have this food");
+
+        else if (rating > 5 || rating < 0)
+            System.out.println("rating failed: rating must be between 0-5");
+
+        else {
+            Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).rateFood(rating);
+            System.out.println("the food was successfully rated");
         }
     }
 

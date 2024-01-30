@@ -63,6 +63,14 @@ public class Food {
         thisFoodComments.add(new Comment(comment, customerUsername));
     }
 
+    public void rateFood(int rating){
+        float dummy = this.totalRatings * this.rating;
+        dummy += rating;
+        this.totalRatings++;
+        dummy /= this.totalRatings;
+        this.rating = dummy;
+    }
+
     public String getName() {
         return name;
     }
