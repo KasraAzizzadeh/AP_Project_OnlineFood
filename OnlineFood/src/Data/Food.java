@@ -59,6 +59,10 @@ public class Food {
         return null;
     }
 
+    public void addComment(String comment, String customerUsername){
+        thisFoodComments.add(new Comment(comment, customerUsername));
+    }
+
     public String getName() {
         return name;
     }

@@ -125,8 +125,23 @@ public class CustomerMenu {
                 userInterface.currentCustomer.purchase();
                 flag = false;
             }
-            //save food
-            //show saved foods
+            //add comment
+            else if (command.matches("^\\s*add\\s+comment\\s*$")){
+                System.out.print("enter food name: ");
+                String name = Input.getScanner().nextLine();
+                name = name.trim();
+                System.out.print("enter restaurant username: ");
+                String username = Input.getScanner().nextLine();
+                if (username.matches("^\\s*\\S+\\s*$")){
+                    username = username.trim();
+                    System.out.print("enter your comment: ");
+                    String comment = Input.getScanner().nextLine();
+                    addComment(name, username, comment, userInterface.currentCustomer.getUsername());
+                }
+                else
+                    System.out.println("remove failed: invalid username format");
+                flag = false;
+            }
             //change password
             //if command not recognized: invalid command
             else if (flag)
@@ -168,6 +183,19 @@ public class CustomerMenu {
         else {
             customer.getCart().removeFoodFromCart(Restaurant.getRestaurantByUsername(username).getFoodByName(foodName), number);
             System.out.println(number + " of " + foodName + " were successfully removed from your cart");
+        }
+    }
+
+    static void addComment(String foodName, String username, String comment, String customerUsername){
+        if (Restaurant.getRestaurantByUsername(username) == null)
+            System.out.println("this restaurant does not exist");
+
+        else if (Restaurant.getRestaurantByUsername(username).getFoodByName(foodName) == null)
+            System.out.println("this restaurant does not have this food");
+
+        else {
+            Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).addComment(comment, customerUsername);
+            System.out.println("your comment was successfully added");
         }
     }
 

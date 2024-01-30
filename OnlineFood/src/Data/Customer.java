@@ -58,4 +58,8 @@ public class Customer extends User {
     public Cart getCart() {
         return cart;
     }
+
+    public String getUsername(){
+        return this.username;
+    }
 }
