@@ -71,6 +71,14 @@ public class Food {
         this.rating = dummy;
     }
 
+    public void viewRatings(){
+        System.out.println("food score: " + this.rating);
+        System.out.println("<<Comments>>");
+        for (Comment comment : thisFoodComments){
+            System.out.println(comment.getCustomerUsername() + " says: " + comment.getComment());
+        }
+    }
+
     public String getName() {
         return name;
     }

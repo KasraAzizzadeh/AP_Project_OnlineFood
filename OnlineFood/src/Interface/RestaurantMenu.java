@@ -20,7 +20,7 @@ public class RestaurantMenu {
             flag = true;
             command = Input.getScanner().nextLine();
 
-            //exit app
+            //logout
             if (command.matches("^\\s*logout\\s*$")){
                 userInterface.currentRestaurant = null;
                 return;
@@ -87,9 +87,7 @@ public class RestaurantMenu {
                 System.out.print("enter food name to check: ");
                 String name = Input.getScanner().nextLine();
                 name = name.trim();
-                result = checkFoodRating(name, userInterface.currentRestaurant);
-                System.out.println(result);
-                //TODO show comments
+                checkFoodRating(name, userInterface.currentRestaurant);
                 flag = false;
             }
             //change password
@@ -147,11 +145,12 @@ public class RestaurantMenu {
         return "food removal successful";
     }
 
-    static String checkFoodRating(String name, Restaurant restaurant){
+    static void checkFoodRating(String name, Restaurant restaurant){
         if (restaurant.getFoodByName(name) == null)
-            return "check failed: food does not exist";
+            System.out.println("check failed: food does not exist");
 
-        return (restaurant.getFoodByName(name).getName() + " rating is " + restaurant.getFoodByName(name).getRating());
+        else
+            restaurant.getFoodByName(name).viewRatings();
     }
 
     static String changeRestaurantPassword(String oldPassword, String newPassword, Restaurant restaurant){

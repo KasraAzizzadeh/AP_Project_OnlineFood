@@ -77,5 +77,6 @@ public class Cart {
         for (int j = 0; j < clone.size(); j++)
             customerFoods.remove(clone.get(j), cloneNum.get(j));
         totalAmount = 0;
+        System.out.println("purchase successful, enjoy your food");
     }
 }

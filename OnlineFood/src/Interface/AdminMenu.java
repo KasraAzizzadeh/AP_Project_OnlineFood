@@ -23,7 +23,7 @@ public class AdminMenu {
             flag = true;
             command = Input.getScanner().nextLine();
 
-            //exit app
+            //logout
             if (command.matches("^\\s*logout\\s*$")){
                 userInterface.currentAdmin = null;
                 return;

@@ -20,7 +20,7 @@ public class CustomerMenu {
             flag = true;
             command = Input.getScanner().nextLine();
 
-            //exit app
+            //logout
             if (command.matches("^\\s*logout\\s*$")){
                 userInterface.currentCustomer = null;
                 return;
@@ -160,6 +160,21 @@ public class CustomerMenu {
                     System.out.println("rating failed: invalid username format");
                 flag = false;
             }
+            //check food rating
+            else if (command.matches("^\\s*check\\s+food\\s+rating\\s*$")){
+                System.out.print("enter food name: ");
+                String name = Input.getScanner().nextLine();
+                name = name.trim();
+                System.out.print("enter restaurant username: ");
+                String username = Input.getScanner().nextLine();
+                if (username.matches("^\\s*\\S+\\s*$")){
+                    username = username.trim();
+                    viewRating(name, username);
+                }
+                else
+                    System.out.println("rating failed: invalid username format");
+                flag = false;
+            }
             //change password
             //if command not recognized: invalid command
             else if (flag)
@@ -231,6 +246,17 @@ public class CustomerMenu {
             Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).rateFood(rating);
             System.out.println("the food was successfully rated");
         }
+    }
+
+    static void viewRating(String foodName, String username){
+        if (Restaurant.getRestaurantByUsername(username) == null)
+            System.out.println("this restaurant does not exist");
+
+        else if (Restaurant.getRestaurantByUsername(username).getFoodByName(foodName) == null)
+            System.out.println("this restaurant does not have this food");
+
+        else
+            Restaurant.getRestaurantByUsername(username).getFoodByName(foodName).viewRatings();
     }
 
 }
